@@ -18,14 +18,15 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Dash extends javax.swing.JFrame implements ActionListener{
-        Button btn = new Button("Close");
-                
+        Button btn = new Button("logout");
+        Button btnIndi = new Button("Individual");
+        JFrame frame = new JFrame();     
         public Dash() {
-            
+                
                 
                 Action ac = new Action();
-                Info in[] = ac.runit();
-                JFrame frame = new JFrame();
+                Info in[] = ac.getInformation();
+                
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 Object rowData[][] = new String[in.length][in.length] ;
                 
@@ -50,8 +51,15 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
                 btn.addActionListener(this);
                 btn.setSize(34,22);
                 btn.setLocation(50,500);
-                frame.add(btn);
                 
+                btnIndi.setActionCommand("indi");
+                btnIndi.addActionListener(this);
+                btnIndi.setSize(34,22);
+                btnIndi.setLocation(80,500);
+                
+                
+                frame.add(btn);
+                frame.add(btnIndi);
                 frame.add(scrollPane, BorderLayout.CENTER);
                 frame.setSize(800, 600);
                 frame.setVisible(true);
@@ -79,41 +87,37 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public static void main(String args[]) {
-        
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        new Dash();
-        
-        
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
+    
+    public  void logOut() {
+        
+        
+    }
     @Override   
     public void actionPerformed(ActionEvent ae) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         System.out.println("Yahooooo");
+        
+        String staus = ae.getActionCommand();
+        
+        switch(staus) {
+            case "indi" :
+                frame.setVisible(false);
+                UserDash ud = new UserDash();
+                ud.setVisible(true);
+                break;
+            case "logout" :
+                System.out.println("test");
+                frame.setVisible(false);
+                Login lg = new Login();
+                lg.setVisible(true);
+                break;
+        }
+        logOut();
+        
     }
 
 }   

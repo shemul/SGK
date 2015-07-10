@@ -26,10 +26,10 @@ public class Action {
            
     ServiceHandler sh = new ServiceHandler();
     String jsonStr = sh.makeServiceCall(urlForInformation, ServiceHandler.GET);
-    String jsonLogin = sh.makeServiceCall(urlForLogin, ServiceHandler.GET);
+    
            
     public Info[] getInformation() {
-        
+        String jsonStr = sh.makeServiceCall(urlForInformation, ServiceHandler.GET);
         Info in[] = new Info[getStatusCount()];
          for (int i = 0; i < in.length; i++) {
              in[i] = new Info();
@@ -64,7 +64,7 @@ public class Action {
     
      public int getLoginData(String u , String p) {
        
-         
+        String jsonLogin = sh.makeServiceCall(urlForLogin, ServiceHandler.GET); 
         boolean loginStatus = false ; 
         int userStatus = 0 ;
         if (jsonLogin != null) {
@@ -117,7 +117,45 @@ public class Action {
         }
         return status.length();
     }
-    
+    public Info getIndividual(int t_id) {
+        
+        Info in = new Info();
+        
+        ServiceHandler sh = new ServiceHandler();
+        String url3 = "http://128.199.201.52/app/SirGeloKoi/info";
+			// Making a request to url and getting response
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+         nameValuePair.add(new BasicNameValuePair("search", t_id+""));
+         
+	String jsonStr4 = sh.makeServiceCall(url3, ServiceHandler.POST, nameValuePair);
+         
+         
+         if (jsonStr4 != null) {
+            try {
+                    JSONObject jsonObj = new JSONObject(jsonStr4);
+                   
+                    status = jsonObj.getJSONArray("status");
+                    
+                   
+                    for (int i = 0; i < status.length(); i++) {
+                        JSONObject c = status.getJSONObject(i);
+                        int id =  Integer.parseInt(c.getString("id"));
+                        in.setId(id);
+                        in.setName(c.getString("t_name"));
+                        in.setGoneFor(c.getString("gone_for"));
+                        in.setAvaiable(c.getString("available_now"));
+                        in.setCommenet(c.getString("comment"));
+                    }
+                    
+                   // System.out.println(status.toString());
+                    
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return in;
+         
+    }
     public void postMet(){
         ServiceHandler sh = new ServiceHandler();
         String url3 = "http://128.199.201.52/app/SirGeloKoi/login";
