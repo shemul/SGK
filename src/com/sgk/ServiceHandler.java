@@ -1,8 +1,9 @@
 package com.sgk ;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.NoRouteToHostException;
 import java.util.List;
-
+import javax.swing.JOptionPane;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,7 +20,7 @@ public class ServiceHandler {
 	static String response = null;
 	public final static int GET = 1;
 	public final static int POST = 2;
-
+        public static String exceptions ; 
 	public ServiceHandler() {
 
 	}
@@ -34,13 +35,6 @@ public class ServiceHandler {
 	}
         
        
-        
-	/*
-	 * Making service call
-	 * @url - url to make request
-	 * @method - http request method
-	 * @params - http request params
-	 * */
 	public String makeServiceCall(String url, int method,
 			List<NameValuePair> params) {
 		try {
@@ -75,11 +69,16 @@ public class ServiceHandler {
 			response = EntityUtils.toString(httpEntity);
 
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+                        System.out.println("hudai");
+			//e.printStackTrace();
+                        
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+                    System.out.println("ajaira");
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+                   
+                   exceptions = e.getMessage();
+                    
 		}
 		
 		return response;

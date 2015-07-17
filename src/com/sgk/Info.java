@@ -17,9 +17,14 @@ public class Info {
     private String goneFor;
     private String available;
     private String comment;
+    private int loginStatusCode;
     
     public void setId(int i) {
         this.id = i;
+    }
+    
+    public void setLoginStatusCode(int i) {
+        this.loginStatusCode = i;
     }
     
     public void setName(String n) {
@@ -54,6 +59,9 @@ public class Info {
     }
     public String getComment(){
         return comment;
+    }
+    public int getLoginStatusCode(){
+        return loginStatusCode;
     }
     
     

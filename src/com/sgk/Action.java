@@ -19,8 +19,8 @@ import org.json.JSONObject;
  * @author shemul
  */
 public class Action {
-    private static String urlForInformation = "http://128.199.201.52/app/SirGeloKoi/info";
-    private static String urlForLogin = "http://128.199.201.52/app/SirGeloKoi/login";
+    private static String urlForInformation = "http://128.199.201.52/app/javaPro/info";
+    private static String urlForLogin = "http://128.199.201.52/app/javaPro/login";
     JSONArray  status = null;
     JSONArray  login = null;
            
@@ -50,11 +50,6 @@ public class Action {
                         in[i].setAvaiable(c.getString("available_now"));
                         in[i].setCommenet(c.getString("comment"));
                     }
-                    
-                    
-                    
-                  
-                    
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -62,8 +57,8 @@ public class Action {
         return in;
     }
     
-     public int getLoginData(String u , String p) {
-       
+     public Info getLoginData(String u , String p) {
+        Info in = new Info();
         String jsonLogin = sh.makeServiceCall(urlForLogin, ServiceHandler.GET); 
         boolean loginStatus = false ; 
         int userStatus = 0 ;
@@ -76,23 +71,30 @@ public class Action {
                     for (int i = 0; i < login.length(); i++) {
                         
                         JSONObject c = login.getJSONObject(i);
-                       // System.out.println("Found");
-                       // System.out.println(c.getString("username"));
                        if (u.equals(c.getString("username")) && p.equals(c.getString("password"))) {
                            if("1".equals(c.getString("status"))) {
                                if("1".equals(c.getString("isAdmin"))) {
-                                   userStatus = 1 ;
+                                   in.setLoginStatusCode(1);
+                                   in.setName(c.getString("username"));
+                                   in.setId(Integer.parseInt(c.getString("user_id")));
+                                   
                                    break;
                                } else {
-                                    userStatus = 2 ;
+                                    in.setLoginStatusCode(2);
+                                    in.setName(c.getString("username"));
+                                    in.setId(Integer.parseInt(c.getString("user_id")));
                                     break;
                                }
                            } else {
-                               userStatus = 3 ;
+                               in.setLoginStatusCode(3);
+                               in.setName(c.getString("username"));
+                               in.setId(Integer.parseInt(c.getString("user_id")));
                            }
                            
                        } else {
-                           userStatus = 0;
+                           in.setLoginStatusCode(4);
+                           in.setName(c.getString("username"));
+                           in.setId(Integer.parseInt(c.getString("user_id")));
                        }
                     }
             } catch (Exception e) {
@@ -100,7 +102,7 @@ public class Action {
             }
         }
         
-       return userStatus;
+       return in;
         //return 1;
     }
     
@@ -121,18 +123,17 @@ public class Action {
         
         Info in = new Info();
         
-        ServiceHandler sh = new ServiceHandler();
-        String url3 = "http://128.199.201.52/app/SirGeloKoi/info";
-			// Making a request to url and getting response
+        //ServiceHandler sh = new ServiceHandler();
+        String urlForIndividual = "http://128.199.201.52/app/javaPro/info";
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
-         nameValuePair.add(new BasicNameValuePair("search", t_id+""));
+        nameValuePair.add(new BasicNameValuePair("search", t_id+""));
          
-	String jsonStr4 = sh.makeServiceCall(url3, ServiceHandler.POST, nameValuePair);
+	String jsonIndividual = sh.makeServiceCall(urlForIndividual, ServiceHandler.POST, nameValuePair);
          
          
-         if (jsonStr4 != null) {
+         if (jsonIndividual != null) {
             try {
-                    JSONObject jsonObj = new JSONObject(jsonStr4);
+                    JSONObject jsonObj = new JSONObject(jsonIndividual);
                    
                     status = jsonObj.getJSONArray("status");
                     
@@ -157,6 +158,8 @@ public class Action {
          
     }
     public void postMet(){
+        
+        //  under construction
         ServiceHandler sh = new ServiceHandler();
         String url3 = "http://128.199.201.52/app/SirGeloKoi/login";
 			// Making a request to url and getting response

@@ -8,8 +8,12 @@ package com.sgk;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
 public class Dash extends javax.swing.JFrame implements ActionListener{
         Button btn = new Button("logout");
         Button btnIndi = new Button("Individual");
-        JFrame frame = new JFrame();     
+        // frame = new JFrame();     
         public Dash() {
                 
                 
                 Action ac = new Action();
                 Info in[] = ac.getInformation();
                 
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 Object rowData[][] = new String[in.length][in.length] ;
                 
                 for (int i = 0; i < in.length; i++) {
@@ -54,20 +58,20 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
                 
                 btnIndi.setActionCommand("indi");
                 btnIndi.addActionListener(this);
-                btnIndi.setSize(34,22);
-                btnIndi.setLocation(80,500);
+                btnIndi.setSize(60,22);
+                btnIndi.setLocation(150,500);
                 
                 
-                frame.add(btn);
-                frame.add(btnIndi);
-                frame.add(scrollPane, BorderLayout.CENTER);
-                frame.setSize(800, 600);
-                frame.setVisible(true);
+                add(btn);
+                add(btnIndi);
+                add(scrollPane, BorderLayout.CENTER);
+                setSize(800, 600);
+                setVisible(true);
                 
             }
-       
+           
+     
         
-
  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -105,13 +109,13 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
         
         switch(staus) {
             case "indi" :
-                frame.setVisible(false);
-                UserDash ud = new UserDash();
+                setVisible(false);
+                UserDash ud = new UserDash(3);
                 ud.setVisible(true);
                 break;
             case "logout" :
                 System.out.println("test");
-                frame.setVisible(false);
+                setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
                 break;
