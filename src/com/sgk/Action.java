@@ -19,8 +19,8 @@ import org.json.JSONObject;
  * @author shemul
  */
 public class Action {
-    private static String urlForInformation = "http://128.199.201.52/app/javaPro/info";
-    private static String urlForLogin = "http://128.199.201.52/app/javaPro/login";
+    private static String urlForInformation = "http://127.0.0.1/json/info";
+    private static String urlForLogin = "http://127.0.0.1/json/login";
     JSONArray  status = null;
     JSONArray  login = null;
            
@@ -149,7 +149,7 @@ public class Action {
                     }
                     
                    // System.out.println(status.toString());
-                    
+                   
             } catch (Exception e) {
                 e.printStackTrace();
             }
