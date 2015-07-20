@@ -6,6 +6,12 @@
 
 package com.sgk;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author shemul
@@ -15,20 +21,45 @@ public class UserDash extends javax.swing.JFrame {
     /**
      * Creates new form UserDash
      */
+    Info in;
     public UserDash(int id) {
-        initComponents();
+        
         
         Action ac = new Action();
-        Info in = ac.getIndividual(id);
+        in = ac.getIndividual(id);
+	setContentPane(new JLabel(new ImageIcon("assets/userDash.jpg")));
+        setLayout(new FlowLayout());
+        initComponents();
         
-        FacId.setText(""+ in.getID());
-        FacText.setText(in.getName());
-        GoneText.setText(in.getGoneFor());
-        AvailText.setText(in.getAvaible());
-        CommentText.setText(in.getComment());
-     
+        welcomeTxt.setText("welcome , " + in.getName());
+        user_id.setText("@"+in.getID());
+        goneFor.setText(in.getGoneFor());
+        available.setText(in.getAvaible());
+        comment.setText(in.getComment());
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setTitle("Status Update");
+        setSize(800, 600);
+        
+        setStatus.setOpaque(false);
+        setStatus.setContentAreaFilled(false);
+        close.setOpaque(false);
+        close.setContentAreaFilled(false);
+        status.setVisible(false);
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    setVisible(false);
+                    new Login().setVisible(true);
+                }
+        });
+        
+        
+        
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,157 +69,186 @@ public class UserDash extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        FacText = new javax.swing.JTextField();
-        GoneText = new javax.swing.JTextField();
-        CommentText = new javax.swing.JTextField();
-        AvailText = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        welcomeTxt = new javax.swing.JLabel();
+        user_id = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        goneFor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        available = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        FacId = new javax.swing.JLabel();
+        comment = new javax.swing.JTextField();
+        setStatus = new javax.swing.JButton();
+        close = new javax.swing.JButton();
+        status = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        FacText.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("update your status");
+
+        welcomeTxt.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        welcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeTxt.setText("welcome , you");
+
+        user_id.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        user_id.setForeground(new java.awt.Color(255, 255, 255));
+        user_id.setText("@id 2556");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("and I'll available at");
+
+        goneFor.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        goneFor.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("I'm gone for");
+
+        available.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        available.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("note");
+
+        comment.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        comment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        setStatus.setForeground(new java.awt.Color(255, 255, 255));
+        setStatus.setText("set status");
+        setStatus.setActionCommand("");
+        setStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Light", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        setStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FacTextActionPerformed(evt);
+                setStatusActionPerformed(evt);
             }
         });
 
-        GoneText.addActionListener(new java.awt.event.ActionListener() {
+        close.setForeground(new java.awt.Color(255, 255, 255));
+        close.setText("Exit");
+        close.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GoneTextActionPerformed(evt);
+                closeActionPerformed(evt);
             }
         });
 
-        CommentText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CommentTextActionPerformed(evt);
-            }
-        });
-
-        AvailText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AvailTextActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Faculty Name :");
-
-        jLabel2.setText("Gone For :");
-
-        jLabel3.setText("Available in :");
-
-        jLabel4.setText("Comment :");
-
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Cancel");
-
-        jLabel5.setText("Faculty ID:");
-
-        FacId.setText("ID");
+        status.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        status.setText("Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addComponent(FacId)
-                    .addComponent(FacText, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(GoneText)
-                    .addComponent(AvailText)
-                    .addComponent(CommentText))
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addComponent(user_id, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(comment, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(welcomeTxt)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
+                            .addComponent(goneFor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(available, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(27, 27, 27))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(setStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(welcomeTxt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(user_id))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(goneFor, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(available, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comment, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(FacId))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FacText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(GoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AvailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CommentText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(setStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(status)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FacTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacTextActionPerformed
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FacTextActionPerformed
+        setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_closeActionPerformed
 
-    private void GoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoneTextActionPerformed
+    private void setStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_GoneTextActionPerformed
-
-    private void AvailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AvailTextActionPerformed
-
-    private void CommentTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommentTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CommentTextActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-
+        
+        Action ac = new Action() ;
+        String updateStatus = ac.statusUpdate(in.getID(), goneFor.getText(), available.getText(), comment.getText());
+        status.setVisible(true);
+        status.setForeground(Color.GREEN);
+        status.setText(updateStatus);
+    }//GEN-LAST:event_setStatusActionPerformed
+    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AvailText;
-    private javax.swing.JTextField CommentText;
-    private javax.swing.JLabel FacId;
-    private javax.swing.JTextField FacText;
-    private javax.swing.JTextField GoneText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField available;
+    private javax.swing.JButton close;
+    private javax.swing.JTextField comment;
+    private javax.swing.JTextField goneFor;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton setStatus;
+    private javax.swing.JLabel status;
+    private javax.swing.JLabel user_id;
+    private javax.swing.JLabel welcomeTxt;
     // End of variables declaration//GEN-END:variables
+
+    public static void main(String[] args) {
+        //new UserDash(2).setVisible(true);
+    }
 }
+
