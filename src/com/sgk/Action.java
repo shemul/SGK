@@ -19,8 +19,8 @@ import org.json.JSONObject;
  * @author shemul
  */
 public class Action {
-    private static String urlForInformation = "http://127.0.0.1/json/info";
-    private static String urlForLogin = "http://127.0.0.1/json/login";
+    private static String urlForInformation = "http://128.199.201.52/app/javaPro/info";
+    private static String urlForLogin = "http://128.199.201.52/app/javaPro/login";
     JSONArray  status = null;
     JSONArray  login = null;
            
@@ -146,17 +146,83 @@ public class Action {
                         in.setGoneFor(c.getString("gone_for"));
                         in.setAvaiable(c.getString("available_now"));
                         in.setCommenet(c.getString("comment"));
+                      
                     }
-                    
-                   // System.out.println(status.toString());
-                   
+                      
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        
         return in;
          
     }
+    
+    public String statusUpdate(int user_id , String goneFor , String available , String comment) {
+        
+       
+        JSONObject c = new JSONObject();
+        //ServiceHandler sh = new ServiceHandler();
+        String urlForIndividual = "http://128.199.201.52/app/javaPro/info";
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+        nameValuePair.add(new BasicNameValuePair("user_id", user_id+""));
+        
+        nameValuePair.add(new BasicNameValuePair("goneFor", goneFor));
+        nameValuePair.add(new BasicNameValuePair("available", available));
+        nameValuePair.add(new BasicNameValuePair("comment", comment));
+        
+         
+	String jsonIndividual = sh.makeServiceCall(urlForIndividual, ServiceHandler.POST, nameValuePair);
+         
+         
+         if (jsonIndividual != null) {
+            try {
+                    JSONObject jsonObj = new JSONObject(jsonIndividual);
+                   
+                    status = jsonObj.getJSONArray("status");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return status.getString(0);
+         
+    }
+    
+    public String addFaculty(String user_id , String username , String password , int IsAdmin , int isActive) {
+        
+       
+        JSONObject c = new JSONObject();
+        //ServiceHandler sh = new ServiceHandler();
+        String urlForIndividual = "http://128.199.201.52/app/javaPro/addNew";
+        List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+        
+        nameValuePair.add(new BasicNameValuePair("user_id", user_id+""));
+        nameValuePair.add(new BasicNameValuePair("usernameforlogin", username));
+        nameValuePair.add(new BasicNameValuePair("password", password));
+        nameValuePair.add(new BasicNameValuePair("isAdmin", IsAdmin + ""));
+        nameValuePair.add(new BasicNameValuePair("isActive", isActive + ""));
+        
+         
+	String jsonIndividual = sh.makeServiceCall(urlForIndividual, ServiceHandler.POST, nameValuePair);
+         
+         
+         if (jsonIndividual != null) {
+            try {
+                    JSONObject jsonObj = new JSONObject(jsonIndividual);
+                   
+                    status = jsonObj.getJSONArray("status");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return status.getString(0);
+         
+    }
+    
+    
+    
     public void postMet(){
         
         //  under construction
