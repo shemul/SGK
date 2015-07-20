@@ -79,12 +79,14 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("username");
 
         txtUsername.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        txtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("password");
 
         txtPassword.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        txtPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
@@ -191,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                         this.setVisible(false);
                         break;
                     case 2 :
-                        
+                       
                         UserDash ud = new UserDash(loggedInUser.getID());
                         ud.setVisible(true);
                         this.setVisible(false);
@@ -203,12 +205,12 @@ public class Login extends javax.swing.JFrame {
                         break;
                     case 4 :
                         status.setForeground(Color.red);
-                        status.setText("Incorrect login Details");
+                        status.setText("Invalid login Details");
                         status.setVisible(true);
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Network Error");
+                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -254,9 +256,6 @@ public class Login extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
                 new Login().setVisible(true);
-                
-                
-                
             }
         });
     }
