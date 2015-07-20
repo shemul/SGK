@@ -9,49 +9,63 @@ package com.sgk;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Toolkit;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+
 
 
 public class Dash extends javax.swing.JFrame implements ActionListener{
-        Button btn = new Button("logout");
-        Button btnIndi = new Button("Individual");
+        Button btnLogut = new Button("Logout");
+        Button btnAddNew = new Button("Add New Faculty");
         // frame = new JFrame();     
         
         public Dash() {
             
             
             Action ac = new Action();
-            Info in[] = ac.getInformation();
-
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            Info in[] = ac.getInformation();    
+            
+            //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             Object rowData[][] = new String[in.length][in.length] ;
+            try{
+                for (int i = 0; i < in.length; i++) {
+                    for (int j = 0; j < 1; j++) {
+                        rowData[i][j]= "" + in[i].getID();
 
-            for (int i = 0; i < in.length; i++) {
-                for (int j = 0; j < 1; j++) {
-                    rowData[i][j]= "" + in[i].getID();
-                    
-                    rowData[i][j+1]=in[i].getName();
-                    rowData[i][j+2]= in[i].getGoneFor();
-                    rowData[i][j+3] = in[i].getAvaible();
-                    rowData[i][j+4] = in[i].getComment();
-                    
-                    
+                        rowData[i][j+1]=in[i].getName();
+                        rowData[i][j+2]= in[i].getGoneFor();
+                        rowData[i][j+3] = in[i].getAvaible();
+                        rowData[i][j+4] = in[i].getComment();
+
+
+                    }
                 }
+            } catch(Exception e) {
+                e.printStackTrace();
             }
-
             Object columnNames[] = { "#ID" , "Name","Gone For","WillAvailableIn","Comment"};
             JTable table = new JTable(rowData, columnNames);
+           
+            
+             
+            //RunnableDemo3 r = new RunnableDemo3(table,"table thread");
+           // r.start();
+            
+            
             
             table.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 153, 51)));
             table.setFont(new java.awt.Font("Segoe UI", 0, 13));
@@ -90,24 +104,37 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
             panel.add(label);
             //end of banner
             
-            btn.addActionListener(this);
-            btn.setSize(34,22);
-            btn.setLocation(50,500);
-
-            btnIndi.setActionCommand("indi");
-            btnIndi.addActionListener(this);
-            btnIndi.setSize(60,22);
-            btnIndi.setLocation(150,500);
-           // add(btn);
-            //(btnIndi);
+            btnLogut.addActionListener(this);
+            btnLogut.setSize(200,50);
+            btnLogut.setLocation(50,600);
+            btnLogut.setActionCommand("logout");
+        
+        
+            btnAddNew.setActionCommand("addNew");
+            btnAddNew.addActionListener(this);
+            btnAddNew.setSize(200,50);
+            btnAddNew.setLocation(260,600);
+            add(btnLogut);
+            add(btnAddNew);
+            
             add(scrollPane);         
             add(panel,BorderLayout.CENTER);
             setSize(700, 600);
             setExtendedState(JFrame.MAXIMIZED_BOTH);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setTitle("Admin dashboard");
             
             setVisible(true);
+            
+            addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    setVisible(false);
+                    new Login().setVisible(true);
+                }
+            });
+            
+            
         }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,13 +168,12 @@ public class Dash extends javax.swing.JFrame implements ActionListener{
         String staus = ae.getActionCommand();
         
         switch(staus) {
-            case "indi" :
+            case "addNew" :
                 setVisible(false);
-                UserDash ud = new UserDash(3);
-                ud.setVisible(true);
+                AddNew addnew = new AddNew();
+                addnew.setVisible(true);
                 break;
-            case "logout" :
-                System.out.println("test");
+            case "logout" :                
                 setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
