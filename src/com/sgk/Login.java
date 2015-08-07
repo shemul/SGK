@@ -2,179 +2,144 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * author Shemul 
  */
 
 package com.sgk;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.FontUIResource;
 
-/**
- *
- * @author shemul
- */
-public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
-    JButton b1;
-    JLabel l1;
+public class Login extends JFrame {
+    
+    JLabel secureLoginLabel = new JLabel();
+    JLabel usernameLabel = new JLabel();
+    JTextField txtUsername = new JTextField();
+    JLabel passwordLabel = new JLabel();
+    JPasswordField txtPassword = new JPasswordField();
+    JButton btnLogin = new JButton();
+    JButton btnCancel = new JButton();
+    JLabel status = new JLabel();
+    JLabel versionLabel = new JLabel();
+
+        
     public Login() {
         
-        setLayout(new BorderLayout());
-	setContentPane(new JLabel(new ImageIcon("assets/login.jpg")));
-	setLayout(new FlowLayout());
-	initComponents();
-        status.setVisible(false);
-	
-        setLocationRelativeTo(null); // for centerized form
-	setSize(500,500);
-        
-        
-        btnLogin.setOpaque(false);
-        btnLogin.setContentAreaFilled(false);
-        
-        btnCancel.setOpaque(false);
-        btnCancel.setContentAreaFilled(false);
-
-
-    }
-
-   
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
-        status = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setContentPane(new JLabel(new ImageIcon("assets/login.jpg")));
+        setLayout(null);
+        initComp();        
+	setSize(500,500);   
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login");
         setAlwaysOnTop(true);
-        setBackground(javax.swing.UIManager.getDefaults().getColor("CheckBox.darkShadow"));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setName("login_Frame"); // NOI18N
         setResizable(false);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("secure login");
+        setLocationRelativeTo(null); //for centerized the frame
+        
+    }
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("username");
+    public void initComp() {
 
-        txtUsername.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        txtUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("password");
-
-        txtPassword.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        txtPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        secureLoginLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        secureLoginLabel.setForeground(new ColorUIResource(Color.WHITE));
+        secureLoginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        secureLoginLabel.setText("secure login");
+        secureLoginLabel.setBounds(148, 29, 176, 57);
+        
+        
+        versionLabel.setForeground(new Color(255, 255, 255));
+        versionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        versionLabel.setText("version : 1.0");
+        versionLabel.setBounds(201, 86, 70, 14);
+        
+        
+        usernameLabel.setFont(new FontUIResource("Segoe UI Light", 0, 28)); // NOI18N
+        usernameLabel.setForeground(new ColorUIResource(255, 255, 255));
+        usernameLabel.setText("username");
+        usernameLabel.setBounds(70, 130, 128, 32);
+        
+        txtUsername.setFont(new FontUIResource("Segoe UI Light", 0, 24)); // NOI18N
+        txtUsername.setBounds(70, 173, 346, 50);
+        
+        
+        passwordLabel.setFont(new FontUIResource("Segoe UI Light", 0, 28)); // NOI18N
+        passwordLabel.setForeground(new ColorUIResource(255, 255, 255));
+        passwordLabel.setText("password");
+        passwordLabel.setBounds(70, 232, 161, 33);
+        
+        
+        txtPassword.setFont(new FontUIResource("Segoe UI Light", 0, 24)); // NOI18N
+        txtPassword.setBounds(70, 278, 341, 50);
+        
+        
+        btnLogin.setForeground(new Color(225, 225, 225));
         btnLogin.setText("Login");
-        btnLogin.setActionCommand("");
-        btnLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+        btnLogin.setBounds(146, 358, 89, 42);           
+        btnLogin.setBorder(BorderFactory.createTitledBorder(""));
+        btnLogin.setOpaque(false);
+        btnLogin.setContentAreaFilled(false);
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               LoginBtn();
             }
         });
 
-        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setForeground(new Color(255, 255, 255));
         btnCancel.setText("Exit");
+        btnCancel.setOpaque(false);
+        btnCancel.setContentAreaFilled(false);
         btnCancel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
+        btnCancel.setBounds(251, 358, 89, 42);
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.exit(1);
             }
         });
 
-        status.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        status.setFont(new FontUIResource("Segoe UI Light", 0, 12)); // NOI18N
+        status.setHorizontalAlignment(SwingConstants.CENTER);
         status.setText("Status");
+        status.setBounds(163, 436, 161, 14);
+        status.setVisible(false);
+        
+        add(secureLoginLabel);
+        add(versionLabel);
+        add(usernameLabel);
+        add(txtUsername);
+        add(passwordLabel);
+        add(txtPassword);
+        add(btnLogin);
+        add(btnCancel);
+        add(status);
+        
+        
+    }
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("version : 1.0");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                        .addComponent(txtUsername)
-                        .addComponent(txtPassword)
-                        .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(87, 87, 87)
-                            .addComponent(jLabel3))))
-                .addContainerGap(122, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(status)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getAccessibleContext().setAccessibleDescription("");
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+    public void LoginBtn() {
+        
+        
         if(txtUsername.getText().equals("") || txtPassword.getText().equals("")){
             status.setForeground(Color.yellow);
             status.setText("Please input Details");
             status.setVisible(true);
+            
         } else {
             Action ac = new Action();
             Info loggedInUser = new Info();
@@ -213,62 +178,14 @@ public class Login extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        System.exit(1);
-    }//GEN-LAST:event_btnCancelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    }
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-      
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());    
                 } catch (Exception e) {
                 }
                 new Login().setVisible(true);
-            }
-        });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel status;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
-    // End of variables declaration//GEN-END:variables
+   
 }

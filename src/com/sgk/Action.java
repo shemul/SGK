@@ -8,19 +8,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author shemul
- */
-public class Action {
-    private static String urlForInformation = "http://128.199.201.52/app/javaPro/info";
-    private static String urlForLogin = "http://128.199.201.52/app/javaPro/login";
+public class Action implements ActionHelper{
+    
     JSONArray  status = null;
     JSONArray  login = null;
            
@@ -57,7 +46,7 @@ public class Action {
         return in;
     }
     
-     public Info getLoginData(String u , String p) {
+    public Info getLoginData(String u , String p) {
         Info in = new Info();
         String jsonLogin = sh.makeServiceCall(urlForLogin, ServiceHandler.GET); 
         boolean loginStatus = false ; 
@@ -70,7 +59,7 @@ public class Action {
                     
                     for (int i = 0; i < login.length(); i++) {
                         
-                        JSONObject c = login.getJSONObject(i);
+                       JSONObject c = login.getJSONObject(i);
                        if (u.equals(c.getString("username")) && p.equals(c.getString("password"))) {
                            if("1".equals(c.getString("status"))) {
                                if("1".equals(c.getString("isAdmin"))) {
@@ -103,14 +92,13 @@ public class Action {
         }
         
        return in;
-        //return 1;
+        //return code will determine weather the user is active user or not , admin , faculty;
     }
     
     public int getStatusCount() {
         if (jsonStr != null) {
             try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
-                   
                     status = jsonObj.getJSONArray("status");
                     
             } catch (Exception e) {
@@ -122,9 +110,6 @@ public class Action {
     public Info getIndividual(int t_id) {
         
         Info in = new Info();
-        
-        //ServiceHandler sh = new ServiceHandler();
-        String urlForIndividual = "http://128.199.201.52/app/javaPro/info";
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
         nameValuePair.add(new BasicNameValuePair("search", t_id+""));
          
@@ -162,26 +147,22 @@ public class Action {
         
        
         JSONObject c = new JSONObject();
-        //ServiceHandler sh = new ServiceHandler();
-        String urlForIndividual = "http://128.199.201.52/app/javaPro/info";
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
         nameValuePair.add(new BasicNameValuePair("user_id", user_id+""));
-        
         nameValuePair.add(new BasicNameValuePair("goneFor", goneFor));
         nameValuePair.add(new BasicNameValuePair("available", available));
         nameValuePair.add(new BasicNameValuePair("comment", comment));
         
          
 	String jsonIndividual = sh.makeServiceCall(urlForIndividual, ServiceHandler.POST, nameValuePair);
-         
+        status= null;
          
          if (jsonIndividual != null) {
             try {
                     JSONObject jsonObj = new JSONObject(jsonIndividual);
-                   
                     status = jsonObj.getJSONArray("status");
             } catch (Exception e) {
-                e.printStackTrace();
+                    e.printStackTrace();
             }
         }
         
@@ -193,8 +174,6 @@ public class Action {
         
        
         JSONObject c = new JSONObject();
-        //ServiceHandler sh = new ServiceHandler();
-        String urlForIndividual = "http://128.199.201.52/app/javaPro/addNew";
         List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
         
         nameValuePair.add(new BasicNameValuePair("user_id", user_id+""));
