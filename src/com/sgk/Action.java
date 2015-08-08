@@ -1,3 +1,11 @@
+/**
+ * The class will manage all operation between server and this app
+ * @author Shemul
+ * @version 1.2.3
+ * 
+ */
+
+
 package com.sgk ;
 
 
@@ -183,7 +191,7 @@ public class Action implements ActionHelper{
         nameValuePair.add(new BasicNameValuePair("isActive", isActive + ""));
         
          
-	String jsonIndividual = sh.makeServiceCall(urlForIndividual, ServiceHandler.POST, nameValuePair);
+	String jsonIndividual = sh.makeServiceCall(urlForAddNewFaculty, ServiceHandler.POST, nameValuePair);
          
          
          if (jsonIndividual != null) {
@@ -196,7 +204,7 @@ public class Action implements ActionHelper{
             }
         }
         
-        return status.getString(0);
+         return status.getString(0);
          
     }
     
@@ -218,7 +226,6 @@ public class Action implements ActionHelper{
             try {
                     JSONObject jsonObj = new JSONObject(jsonStr4);
                    
-                   // status = jsonObj.getJSONArray("login");
                     
                     System.out.println(jsonObj.toString());
                     

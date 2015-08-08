@@ -1,9 +1,24 @@
+/**
+ * @author Ravi Tamada
+ * @author Re-written by Shemul
+ * @url http://www.androidhive.info/2012/01/android-json-parsing-tutorial/
+ * 
+ * History :
+ * 
+ * To fetch data from JSON ,I used this class. 
+ * I did search over the internet.
+ * found this which is perfectly works on my android client and java gui
+ * Most of code I understood but some fewer thing I couldn't understood yet
+ * 
+ * 
+ * 
+ */
+
+
 package com.sgk ;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.NoRouteToHostException;
 import java.util.List;
-import javax.swing.JOptionPane;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

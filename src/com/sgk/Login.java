@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  * 
- * author Shemul 
+ * @author Shemul 
+ * 
  */
 
 package com.sgk;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -27,24 +29,26 @@ import javax.swing.plaf.FontUIResource;
 
 public class Login extends JFrame {
     
-    JLabel secureLoginLabel = new JLabel();
-    JLabel usernameLabel = new JLabel();
-    JTextField txtUsername = new JTextField();
-    JLabel passwordLabel = new JLabel();
-    JPasswordField txtPassword = new JPasswordField();
-    JButton btnLogin = new JButton();
-    JButton btnCancel = new JButton();
-    JLabel status = new JLabel();
-    JLabel versionLabel = new JLabel();
-
-        
+    
+    JLabel secureLoginLabel     = new JLabel();
+    JLabel usernameLabel        = new JLabel();
+    JTextField txtUsername      = new JTextField();
+    JLabel passwordLabel        = new JLabel();
+    JPasswordField txtPassword  = new JPasswordField();
+    JButton btnLogin            = new JButton();
+    JButton btnCancel           = new JButton();
+    JButton studentButton           = new JButton();
+    
+    JLabel status               = new JLabel();
+    JLabel versionLabel         = new JLabel();
+    
+    
     public Login() {
         
         setContentPane(new JLabel(new ImageIcon("assets/login.jpg")));
         setLayout(null);
         initComp();        
-	setSize(500,500);   
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setSize(500,500);
         setTitle("Login");
         setAlwaysOnTop(true);
         setResizable(false);
@@ -55,7 +59,7 @@ public class Login extends JFrame {
 
     public void initComp() {
 
-        secureLoginLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        secureLoginLabel.setFont(new Font("Segoe UI", 0, 24)); // NOI18N
         secureLoginLabel.setForeground(new ColorUIResource(Color.WHITE));
         secureLoginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         secureLoginLabel.setText("secure login");
@@ -89,7 +93,7 @@ public class Login extends JFrame {
         
         btnLogin.setForeground(new Color(225, 225, 225));
         btnLogin.setText("Login");
-        btnLogin.setBounds(146, 358, 89, 42);           
+        btnLogin.setBounds(80, 358, 89, 42);           
         btnLogin.setBorder(BorderFactory.createTitledBorder(""));
         btnLogin.setOpaque(false);
         btnLogin.setContentAreaFilled(false);
@@ -104,15 +108,31 @@ public class Login extends JFrame {
         btnCancel.setText("Exit");
         btnCancel.setOpaque(false);
         btnCancel.setContentAreaFilled(false);
-        btnCancel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnCancel.setBounds(251, 358, 89, 42);
+        btnCancel.setBorder(BorderFactory.createTitledBorder(""));
+        btnCancel.setBounds(192, 358, 89, 42);
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.exit(1);
             }
         });
-
+        
+        
+        studentButton.setForeground(new Color(255, 255, 255));
+        studentButton.setText("Student Login");
+        studentButton.setOpaque(false);
+        studentButton.setContentAreaFilled(false);
+        studentButton.setBorder(BorderFactory.createTitledBorder(""));
+        studentButton.setBounds(300, 358, 100, 42);
+        studentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setVisible(false);
+                new StudentDash();
+            }
+        });
+        
+        
         status.setFont(new FontUIResource("Segoe UI Light", 0, 12)); // NOI18N
         status.setHorizontalAlignment(SwingConstants.CENTER);
         status.setText("Status");
@@ -120,6 +140,7 @@ public class Login extends JFrame {
         status.setVisible(false);
         
         add(secureLoginLabel);
+        add(studentButton);
         add(versionLabel);
         add(usernameLabel);
         add(txtUsername);
@@ -133,8 +154,6 @@ public class Login extends JFrame {
     }
 
     public void LoginBtn() {
-        
-        
         if(txtUsername.getText().equals("") || txtPassword.getText().equals("")){
             status.setForeground(Color.yellow);
             status.setText("Please input Details");
@@ -145,7 +164,6 @@ public class Login extends JFrame {
             Info loggedInUser = new Info();
             try {
                 loggedInUser = ac.getLoginData(txtUsername.getText(), txtPassword.getText());
-                //System.out.println(loginStatus);
                 if (ServiceHandler.exceptions != null ){
                     status.setVisible(true);
                     status.setForeground(Color.pink);
@@ -154,7 +172,6 @@ public class Login extends JFrame {
                 switch(loggedInUser.getLoginStatusCode()){
                     case 1:
                         Dash ds = new Dash();
-                        ds.setVisible(true);
                         this.setVisible(false);
                         break;
                     case 2 :

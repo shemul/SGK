@@ -20,21 +20,17 @@ import javax.swing.ListSelectionModel;
 
 
 
-public class Dash extends JFrame implements ActionListener{
+public class StudentDash extends JFrame implements ActionListener{
     
         Button logoutBtn ;
         Button addNewBtn ;
         
-        public Dash() {
-            
-           
+        public StudentDash() {
             
             Action ac   = new Action();
             Info in[]   = ac.getInformation();    
             
-            logoutBtn=   new Button("Logout");
-            addNewBtn = new Button("Add New Faculty");
-            
+             
             Object rowData[][] = new String[in.length][in.length] ;
             
             // populating all data to a presentable array from data source
@@ -91,28 +87,23 @@ public class Dash extends JFrame implements ActionListener{
             panel.setSize(1366,200);
             panel.setLocation(0, 0);
             
-            JLabel label = new JLabel(new ImageIcon(ActionHelper.dashBannerImage)); 
+            JLabel label = new JLabel(new ImageIcon(ActionHelper.dashBannerStudent)); 
             panel.add(label);
             
+            Button exit = new Button();
+            exit.addActionListener(this);
+            exit.setSize(200,50);
+            exit.setLocation(50,600);
+            exit.setLabel("Exit");
             
-            logoutBtn.addActionListener(this);
-            logoutBtn.setSize(200,50);
-            logoutBtn.setLocation(50,600);
-            logoutBtn.setActionCommand("logout");
             
-            addNewBtn.setActionCommand("addNew");
-            addNewBtn.addActionListener(this);
-            addNewBtn.setSize(200,50);
-            addNewBtn.setLocation(260,600);
-            
-            add(logoutBtn);
-            add(addNewBtn);
+            add(exit);
             add(scrollPane);         
             add(panel);
             
             // view in full-screen mode
             setExtendedState(JFrame.MAXIMIZED_BOTH);
-            setTitle("Admin dashboard");
+            setTitle("Student dashboard");
             setVisible(true);
             addWindowListener(new WindowAdapter() {
                 @Override
@@ -129,23 +120,8 @@ public class Dash extends JFrame implements ActionListener{
     // Button Lisenter for both buttons        
     @Override   
     public void actionPerformed(ActionEvent ae) {
-        
-        String btnStatus = ae.getActionCommand();
-        
-        switch(btnStatus) {
-            case "addNew" :
-                
-                setVisible(false);
-                AddNew addnew = new AddNew();
-                addnew.setVisible(true);
-                break;
-                
-            case "logout" :                
-                setVisible(false);
-                Login lg = new Login();
-                lg.setVisible(true);
-                break;
-        }
+                    setVisible(false);
+                    new Login().setVisible(true);
     }
     
     public static void main(String[] args) {

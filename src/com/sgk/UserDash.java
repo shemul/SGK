@@ -4,40 +4,53 @@
  * and open the template in the editor.
  *
  * @author shemul
+ * 
  */
 
 package com.sgk;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
- *
+ * This is the class of individual's , this class handle gui of Faculty Status update operations
  * @author shemul
+ * @version 1.2.3
  */
-public class UserDash extends javax.swing.JFrame {
+public class UserDash extends JFrame {
     
         Info in;
-        private javax.swing.JTextField available;
-        private javax.swing.JLabel availableLabel;
-        private javax.swing.JButton close;
-        private javax.swing.JTextField comment;
-        private javax.swing.JTextField goneFor;
-        private javax.swing.JLabel goneForLabel;
-        private javax.swing.JLabel header;
-        private javax.swing.JLabel noteLabel;
-        private javax.swing.JButton setStatus;
-        private javax.swing.JLabel status;
-        private javax.swing.JLabel user_id;
-        private javax.swing.JLabel welcomeTxt;
+        private JTextField available;
+        private JLabel availableLabel;
+        private JButton close;
+        private JTextField comment;
+        private JTextField goneFor;
+        private JLabel goneForLabel;
+        private JLabel header;
+        private JLabel noteLabel;
+        private JButton setStatus;
+        private JLabel status;
+        private JLabel user_id;
+        private JLabel welcomeTxt;
 
-    
-        public UserDash(int id) {
+    public UserDash(int id) {
+            
+            /**
+            * Public Constructor of UserDash Class 
+            * 
+            */
+            
             Action ac = new Action();
             in = ac.getIndividual(id);
 
@@ -49,82 +62,91 @@ public class UserDash extends javax.swing.JFrame {
             initComp();
 
             setLocationRelativeTo(null);
-            addWindowListener(new java.awt.event.WindowAdapter() {
+            
+            addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    public void windowClosing(WindowEvent windowEvent) {
                         setVisible(false);
                         new Login().setVisible(true);
                     }
             });
     }
         
-    public  void initComp() {
+    /**
+     *
+     */
+    public void initComp() {
+       
+        /**
+        *  This method will initialize and add proper Swing/Awt component 
+        * 
+        *  
+        */       
         
-        header = new javax.swing.JLabel();
-        welcomeTxt = new javax.swing.JLabel();
-        user_id = new javax.swing.JLabel();
-        availableLabel = new javax.swing.JLabel();
-        goneFor = new javax.swing.JTextField();
-        goneForLabel = new javax.swing.JLabel();
-        available = new javax.swing.JTextField();
-        noteLabel = new javax.swing.JLabel();
-        comment = new javax.swing.JTextField();
-        setStatus = new javax.swing.JButton();
-        close = new javax.swing.JButton();
-        status = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
-        header.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        header.setForeground(new java.awt.Color(255, 255, 255));
-        header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        header          = new JLabel();
+        welcomeTxt      = new JLabel();
+        user_id         = new JLabel();
+        availableLabel  = new JLabel();
+        goneFor         = new JTextField();
+        goneForLabel    = new JLabel();
+        available       = new JTextField();
+        noteLabel       = new JLabel();
+        comment         = new JTextField();
+        setStatus       = new JButton();
+        close           = new JButton();
+        status          = new JLabel();
+        
+        
+        header.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        header.setForeground(new Color(255, 255, 255));
+        header.setHorizontalAlignment(SwingConstants.CENTER);
         header.setText("update your status");
         header.setBounds(580, 40, 186, 41);
         
         
-        welcomeTxt.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        welcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeTxt.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        welcomeTxt.setForeground(new Color(255, 255, 255));
         welcomeTxt.setText("welcome , you");
-        welcomeTxt.setBounds(36, 106, 159, 31);
+        welcomeTxt.setBounds(36, 90, 250, 31);
         welcomeTxt.setText("welcome , " + in.getName());
         
         
-        user_id.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        user_id.setForeground(new java.awt.Color(255, 255, 255));
+        user_id.setFont(new Font("Segoe UI", 0, 12)); // NOI18N
+        user_id.setForeground(new Color(255, 255, 255));
         user_id.setText("@id 2556");
         user_id.setBounds(37, 132, 46, 14);
         user_id.setText("@"+in.getID());
         
         
-        goneForLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        goneForLabel.setForeground(new java.awt.Color(255, 255, 255));
+        goneForLabel.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        goneForLabel.setForeground(new Color(255, 255, 255));
         goneForLabel.setText("I'm gone for");
         goneForLabel.setBounds(37, 167, 134, 31);
         
-        goneFor.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        goneFor.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        goneFor.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        goneFor.setBorder(BorderFactory.createTitledBorder(""));
         goneFor.setBounds(36, 208, 730, 41);
         goneFor.setText(in.getGoneFor());
        
         
-        availableLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        availableLabel.setForeground(new java.awt.Color(255, 255, 255));
+        availableLabel.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        availableLabel.setForeground(new Color(255, 255, 255));
         availableLabel.setText("and I'll available at");
         availableLabel.setBounds(36, 265, 250, 31);
         
         
-        available.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        available.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        available.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        available.setBorder(BorderFactory.createTitledBorder(""));
         available.setBounds(36, 304, 730, 41);
         available.setText(in.getAvaible());
         
-        noteLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        noteLabel.setForeground(new java.awt.Color(255, 255, 255));
+        noteLabel.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        noteLabel.setForeground(new Color(255, 255, 255));
         noteLabel.setText("note");
         noteLabel.setBounds(37, 366, 134, 31);
 
-        comment.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        comment.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        comment.setFont(new Font("Segoe UI Light", 0, 24)); // NOI18N
+        comment.setBorder(BorderFactory.createTitledBorder(""));
         comment.setBounds(36, 409, 730, 41);
         comment.setText(in.getComment());
         
@@ -136,13 +158,14 @@ public class UserDash extends javax.swing.JFrame {
         setStatus.setOpaque(false);
         setStatus.setContentAreaFilled(false);
         setStatus.setBounds(259, 484, 105, 41);
-        setStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        setStatus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
                 setStatusActionPerformed(evt);
             }
         });
 
-        close.setForeground(new java.awt.Color(255, 255, 255));
+        close.setForeground(new Color(255, 255, 255));
         close.setText("Exit");
         close.setBounds(374, 484, 105, 41);
         close.setActionCommand("");
@@ -150,16 +173,17 @@ public class UserDash extends javax.swing.JFrame {
         close.setOpaque(false);
         close.setContentAreaFilled(false);
        
-        close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeActionPerformed(evt);
+        close.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                    setVisible(false);
+                    new Login().setVisible(true);
             }
         });
 
-        status.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        status.setFont(new Font("Segoe UI Light", 0, 12)); // NOI18N
+        status.setHorizontalAlignment(SwingConstants.CENTER);
         status.setText("Status");
-        status.setBounds(347, 536, 46, 14);
+        status.setBounds(347, 536, 200, 14);
         status.setVisible(false);
         
         add(header);
@@ -176,21 +200,15 @@ public class UserDash extends javax.swing.JFrame {
         add(status);
         
     }
-    private void closeActionPerformed(ActionEvent evt) {                                      
+    
+    private void setStatusActionPerformed(ActionEvent evt) {                 
         
-        setVisible(false);
-        new Login().setVisible(true);
-    }                                     
-
-    private void setStatusActionPerformed(ActionEvent evt) {                                          
         Action ac = new Action() ;
         String updateStatus = ac.statusUpdate(in.getID(), goneFor.getText(), available.getText(), comment.getText());
         status.setVisible(true);
         status.setForeground(Color.GREEN);
         status.setText(updateStatus);
     }                                         
-    public static void main(String[] args) {
-        new UserDash(2).setVisible(true);
-    }
+    
 }
 
