@@ -37,7 +37,7 @@ public class Login extends JFrame {
     JPasswordField txtPassword  = new JPasswordField();
     JButton btnLogin            = new JButton();
     JButton btnCancel           = new JButton();
-    JButton studentButton           = new JButton();
+    JButton studentButton       = new JButton();
     
     JLabel status               = new JLabel();
     JLabel versionLabel         = new JLabel();
@@ -63,7 +63,7 @@ public class Login extends JFrame {
         secureLoginLabel.setForeground(new ColorUIResource(Color.WHITE));
         secureLoginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         secureLoginLabel.setText("secure login");
-        secureLoginLabel.setBounds(148, 29, 176, 57);
+        secureLoginLabel.setBounds(155, 29, 176, 57);
         
         
         versionLabel.setForeground(new Color(255, 255, 255));
@@ -88,7 +88,7 @@ public class Login extends JFrame {
         
         
         txtPassword.setFont(new FontUIResource("Segoe UI Light", 0, 24)); // NOI18N
-        txtPassword.setBounds(70, 278, 341, 50);
+        txtPassword.setBounds(70, 278, 346, 50);
         
         
         btnLogin.setForeground(new Color(225, 225, 225));
